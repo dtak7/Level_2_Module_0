@@ -29,7 +29,7 @@ public class GuestBook implements MouseListener {
 	
 	}
 	GuestBook(){
-		 array = new ArrayList();
+		 array = new ArrayList<String>();
 		frame.setVisible(true);
 		frame.setSize(50, 50);
 		frame.add(panel);
@@ -40,6 +40,7 @@ public class GuestBook implements MouseListener {
 		view.setText("view");
 		add.setText("add");
 		add.addMouseListener(this);
+		view.addMouseListener(this);
 		
 	}
 	@Override
@@ -47,11 +48,18 @@ public class GuestBook implements MouseListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==add) {
 		arrayText =JOptionPane.showInputDialog("add a guest");
-		array.add(arrayText);
+		if(arrayText!=null) {
+			array.add(arrayText);
 		}
-		else {
-			System.out.println(array);
+	
 		}
+		else if((JButton)e.getSource()==view) {
+			
+			for(int i = 0; i < array.size(); i++){
+				String s = array.get(i);
+				JOptionPane.showMessageDialog(null, "guest number "+i+ " is "+s);
+			}
+			}
 		}
 	
 	@Override
